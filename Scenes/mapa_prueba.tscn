@@ -1,5 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dyjpx0il84y64"]
-
-[ext_resource type="PackedScene" uid="uid://cwb2pgho1lnme" path="res://Assets/Map/MapaPrueba.dae" id="1_nryvt"]
-
-[node name="MapaPrueba" instance=ExtResource("1_nryvt")]

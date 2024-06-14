@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://c7oxtup4qdk2o"]
-
-[ext_resource type="Script" path="res://Wander.gd" id="1_jxuwt"]
-
-[node name="Wander" type="Node3D"]
-script = ExtResource("1_jxuwt")

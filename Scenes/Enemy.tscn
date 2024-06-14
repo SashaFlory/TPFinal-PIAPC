@@ -1,29 +1,33 @@
-[gd_scene load_steps=6 format=3 uid="uid://crtoc0fc08wbx"]
+[gd_scene load_steps=7 format=3 uid="uid://bme6fefqwksot"]
 
-[ext_resource type="Script" path="res://Scenes/Enemy.gd" id="1_or362"]
-[ext_resource type="PackedScene" uid="uid://sbnpes5dmffk" path="res://Assets/Enemy.blend" id="1_s6swv"]
-[ext_resource type="Script" path="res://States/StateMachine.gd" id="3_5rk1k"]
-[ext_resource type="Script" path="res://States/EnemyIdle.gd" id="4_4msn3"]
+[ext_resource type="Script" path="res://Scenes/enemy.gd" id="1_56gy6"]
+[ext_resource type="Texture2D" uid="uid://cac2gdcw7nyp3" path="res://Assets/Cobra.png" id="1_vxkkv"]
+[ext_resource type="Script" path="res://States/EnemyStateMachine.gd" id="3_7mtr3"]
+[ext_resource type="Script" path="res://States/Idle.gd" id="4_a3qg2"]
+[ext_resource type="Script" path="res://States/EnemyFollow.gd" id="5_ujv71"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1xiyr"]
-radius = 1.11463
-height = 3.52246
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0r2au"]
+size = Vector2(178, 173)
 
-[node name="Enemy" type="CharacterBody3D"]
-script = ExtResource("1_or362")
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_56gy6")
 
-[node name="Enemy" parent="." instance=ExtResource("1_s6swv")]
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_vxkkv")
+hframes = 32
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.76793, 0)
-shape = SubResource("CapsuleShape3D_1xiyr")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 12.5)
+shape = SubResource("RectangleShape2D_0r2au")
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-debug_enabled = true
+[node name="EnemyStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_7mtr3")
+initial_state = NodePath("Follow")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
-script = ExtResource("3_5rk1k")
-initial_state = NodePath("EnemyIdle")
+[node name="Idle" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("4_a3qg2")
+enemy = NodePath("../..")
 
-[node name="EnemyIdle" type="Node" parent="StateMachine"]
-script = ExtResource("4_4msn3")
+[node name="Follow" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("5_ujv71")
+enemy = NodePath("../..")
