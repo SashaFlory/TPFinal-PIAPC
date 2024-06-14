@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://crtoc0fc08wbx"]
+
+[ext_resource type="Script" path="res://Scenes/Enemy.gd" id="1_or362"]
+[ext_resource type="PackedScene" uid="uid://sbnpes5dmffk" path="res://Assets/Enemy.blend" id="1_s6swv"]
+[ext_resource type="Script" path="res://States/StateMachine.gd" id="3_5rk1k"]
+[ext_resource type="Script" path="res://States/EnemyIdle.gd" id="4_4msn3"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1xiyr"]
+radius = 1.11463
+height = 3.52246
+
+[node name="Enemy" type="CharacterBody3D"]
+script = ExtResource("1_or362")
+
+[node name="Enemy" parent="." instance=ExtResource("1_s6swv")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.76793, 0)
+shape = SubResource("CapsuleShape3D_1xiyr")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+debug_enabled = true
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_5rk1k")
+initial_state = NodePath("EnemyIdle")
+
+[node name="EnemyIdle" type="Node" parent="StateMachine"]
+script = ExtResource("4_4msn3")
