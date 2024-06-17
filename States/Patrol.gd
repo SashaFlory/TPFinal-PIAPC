@@ -1,14 +1,14 @@
 extends State
-class_name Idle
+class_name Patrol
 
 @export var enemy : CharacterBody2D
 @export var move_speed := 100.0
 var player : CharacterBody2D
-var direction : Vector2
+var move_direction : Vector2
 var wander_time : float
 
 func randomize_wander():
-	direction = Vector2 (randf_range(-1,1), randf_range(-1,1)).normalized()
+	move_direction = Vector2 (randf_range(-1,1), randf_range(-1,1)).normalized()
 	wander_time = randf_range(1,3)
 	
 func Enter():
@@ -20,14 +20,17 @@ func Update(delta : float):
 		wander_time -= delta
 	else:
 		randomize_wander()
-
-func Physics_Update(delta : float):
-	if enemy:
-		enemy.velocity = direction * move_speed
-		
-	var direction = player.global_position - enemy.global_position
 	
-	#if direction.length() < 30:
-		#Transitioned.emit(self, "follow")
-		#return
+	
+
+func Physics_Update(_delta : float):
+	if enemy:
+		enemy.velocity = move_direction * move_speed
+		
+	var direction_player = player.global_position - enemy.global_position
+	
+	if direction_player.length() < 200:
+		print("Pasando a estado Follow")
+		transitioned.emit(self, "Follow")
+		return
 

@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://Scenes/enemy.gd" id="1_56gy6"]
 [ext_resource type="Texture2D" uid="uid://cac2gdcw7nyp3" path="res://Assets/Cobra.png" id="1_vxkkv"]
 [ext_resource type="Script" path="res://States/EnemyStateMachine.gd" id="3_7mtr3"]
-[ext_resource type="Script" path="res://States/Idle.gd" id="4_a3qg2"]
-[ext_resource type="Script" path="res://States/EnemyFollow.gd" id="5_ujv71"]
+[ext_resource type="Script" path="res://States/Patrol.gd" id="4_a3qg2"]
+[ext_resource type="Script" path="res://States/Follow.gd" id="5_ujv71"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0r2au"]
 size = Vector2(178, 173)
@@ -22,9 +22,9 @@ shape = SubResource("RectangleShape2D_0r2au")
 
 [node name="EnemyStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_7mtr3")
-initial_state = NodePath("Follow")
+initial_state = NodePath("Patrol")
 
-[node name="Idle" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("enemy")]
+[node name="Patrol" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("4_a3qg2")
 enemy = NodePath("../..")
 
