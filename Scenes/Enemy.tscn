@@ -1,24 +1,140 @@
-[gd_scene load_steps=7 format=3 uid="uid://bme6fefqwksot"]
+[gd_scene load_steps=15 format=3 uid="uid://bme6fefqwksot"]
 
 [ext_resource type="Script" path="res://Scenes/enemy.gd" id="1_56gy6"]
 [ext_resource type="Texture2D" uid="uid://cac2gdcw7nyp3" path="res://Assets/Cobra.png" id="1_vxkkv"]
 [ext_resource type="Script" path="res://States/EnemyStateMachine.gd" id="3_7mtr3"]
 [ext_resource type="Script" path="res://States/Patrol.gd" id="4_a3qg2"]
 [ext_resource type="Script" path="res://States/Follow.gd" id="5_ujv71"]
+[ext_resource type="Script" path="res://Scenes/Idle.gd" id="6_dygbf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0r2au"]
 size = Vector2(178, 173)
+
+[sub_resource type="Animation" id="Animation_l7k0t"]
+resource_name = "walk_left"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 4, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_80wq5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_mndp2"]
+resource_name = "walk_right"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 9]
+}
+
+[sub_resource type="Animation" id="Animation_1bqfh"]
+resource_name = "walk_up"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [11, 12, 13, 14]
+}
+
+[sub_resource type="Animation" id="Animation_rh3u6"]
+resource_name = "walk_down"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [16, 17, 18, 19]
+}
+
+[sub_resource type="Animation" id="Animation_h6obw"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_den0s"]
+_data = {
+"RESET": SubResource("Animation_80wq5"),
+"idle": SubResource("Animation_h6obw"),
+"walk_down": SubResource("Animation_rh3u6"),
+"walk_left": SubResource("Animation_l7k0t"),
+"walk_right": SubResource("Animation_mndp2"),
+"walk_up": SubResource("Animation_1bqfh")
+}
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_56gy6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, 0)
 texture = ExtResource("1_vxkkv")
 hframes = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 12.5)
 shape = SubResource("RectangleShape2D_0r2au")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_den0s")
+}
 
 [node name="EnemyStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_7mtr3")
@@ -30,4 +146,8 @@ enemy = NodePath("../..")
 
 [node name="Follow" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("5_ujv71")
+enemy = NodePath("../..")
+
+[node name="Idle" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("6_dygbf")
 enemy = NodePath("../..")

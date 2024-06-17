@@ -9,13 +9,13 @@ func handleInput():
 
 func updateAnimation():
 	var direction = "idle"
-	if velocity.x < 0: direction = "left"
-	elif velocity.x > 0: direction = "right"
-	elif velocity.y < 0: direction = "up"
-	elif velocity.y > 0 : direction = "down"
-	else: direction = "idle"
-	
-	animations.play("walk_" + direction)
+	if velocity.x < 0: direction = "walk_left"
+	elif velocity.x > 0: direction = "walk_right"
+	elif velocity.y < 0: direction = "walk_up"
+	elif velocity.y > 0 : direction = "walk_down"
+	else:
+		direction = "idle"
+	animations.play(direction)
 
 func _physics_process(_delta):
 	handleInput()

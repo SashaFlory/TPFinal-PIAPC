@@ -2,7 +2,8 @@ extends State
 class_name Follow
 
 @export var enemy: CharacterBody2D
-@export var move_speed := 100.0
+@export var move_speed := 150.0
+
 var player: CharacterBody2D
 
 func Enter():
@@ -15,8 +16,8 @@ func Physics_Update(delta: float):
 		enemy.velocity = direction.normalized() * move_speed
 	else:
 		enemy.velocity = Vector2()
-		
+	
 	if direction.length() > 400 :
-		print("Pasando a estado Patrol")
+		print("Pasando a estado PATROL")
 		transitioned.emit(self, "Patrol")
 		return

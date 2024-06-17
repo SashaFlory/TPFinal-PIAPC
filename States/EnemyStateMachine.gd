@@ -1,8 +1,8 @@
 extends Node
 
 @export var initial_state : State
-var current_state : State
 
+var current_state : State
 var states : Dictionary = {}
 
 func _ready():
@@ -26,16 +26,16 @@ func _physics_process(delta):
 func on_child_transition(state: State, new_state_name: String):
 	if state != current_state:
 		return
+	
 	var new_state = states.get(new_state_name.to_lower())
 	
 	if !new_state:
 		print("no hay estado")
 		return
-		
+	
 	if current_state:
 		current_state.Exit()
-		
-	new_state.Enter()
 	
+	new_state.Enter()
 	current_state = new_state
 	
