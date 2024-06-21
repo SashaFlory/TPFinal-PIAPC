@@ -34,7 +34,7 @@ func Physics_Update(_delta : float):
 	
 	var direction_player = player.global_position - enemy.global_position
 	
-	if direction_player.length() < 200:
+	if direction_player.length() < 300:
 		print("Pasando a estado FOLLOW")
 		transitioned.emit(self, "Follow")
 		return
