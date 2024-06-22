@@ -25,7 +25,7 @@ func Physics_Update(_delta: float):
 	
 	var distance_player = player.global_position - enemy.global_position
 
-	if distance_player.length() > 700 :
+	if distance_player.length() > 500 :
 		print("Pasando a estado PATROL")
 		transitioned.emit(self, "Patrol")
 		return

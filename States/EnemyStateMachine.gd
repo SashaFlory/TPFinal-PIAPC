@@ -38,4 +38,3 @@ func on_child_transition(state: State, new_state_name: String):
 	
 	new_state.Enter()
 	current_state = new_state
-	

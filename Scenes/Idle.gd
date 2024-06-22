@@ -3,6 +3,7 @@ class_name Idle
 
 @export var enemy: CharacterBody2D
 @export var move_speed := 100.0
+
 @onready var animations = $"../../AnimationPlayer"
  
 var player : CharacterBody2D
