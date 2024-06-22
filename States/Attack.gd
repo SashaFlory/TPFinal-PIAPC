@@ -28,11 +28,6 @@ func Physics_Update(_delta: float):
 	elif direction.y < 0:
 		animations.play("attack_up")
 		
-	if direction.length() > 400 :
-		print("Pasando a estado PATROL")
-		transitioned.emit(self, "Patrol")
-		return
-		
 	if direction.length() > 100 :
 		print("Pasando a estado FOLLOW")
 		transitioned.emit(self, "Follow")

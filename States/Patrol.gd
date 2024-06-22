@@ -4,14 +4,19 @@ class_name Patrol
 @export var enemy : CharacterBody2D
 @export var move_speed := 100.0
 
+@onready var navAgent := $"../../NavigationAgent2D" as NavigationAgent2D
+
 var player : CharacterBody2D
 var move_direction : Vector2
 var wander_time : float
 var patrol_timer : float
 
+#
 func randomize_wander():
 	move_direction = Vector2 (randf_range(-1,1), randf_range(-1,1)).normalized()
 	wander_time = randf_range(1,3)
+	
+
 	
 func Enter():
 	randomize_wander()
@@ -29,10 +34,9 @@ func Update(delta : float):
 		#print(patrol_timer)
 
 func Physics_Update(_delta : float):
+	var direction_player = player.global_position - enemy.global_position
 	if enemy:
 		enemy.velocity = move_direction * move_speed
-	
-	var direction_player = player.global_position - enemy.global_position
 	
 	if direction_player.length() < 300:
 		print("Pasando a estado FOLLOW")
