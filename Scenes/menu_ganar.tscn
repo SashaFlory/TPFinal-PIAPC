@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://duaf3h3jkr77"]
+
+[ext_resource type="Script" path="res://Scenes/menu_ganar.gd" id="1_ldo6q"]
+[ext_resource type="Texture2D" uid="uid://5yatrb8l1vta" path="res://Assets/Fondo.jpg" id="2_11fe8"]
+
+[node name="menu_ganar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ldo6q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1010, 565)
+scale = Vector2(4.94447, 4.94447)
+texture = ExtResource("2_11fe8")
+
+[node name="Ganar" type="Button" parent="."]
+layout_mode = 0
+offset_left = 559.0
+offset_top = 131.0
+offset_right = 1318.0
+offset_bottom = 276.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 100
+text = "Has Ganado!!!!!!"
+flat = true
+
+[node name="Salir" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1429.0
+offset_top = 629.0
+offset_right = 1471.0
+offset_bottom = 660.0
+theme_override_font_sizes/font_size = 59
+text = "Salir"
+
+[connection signal="pressed" from="Salir" to="." method="_on_salir_pressed"]

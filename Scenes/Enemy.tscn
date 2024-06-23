@@ -191,7 +191,7 @@ _data = {
 "walk_up": SubResource("Animation_1bqfh")
 }
 
-[node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
+[node name="Enemy" type="CharacterBody2D" groups=["Hit", "enemies"]]
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_56gy6")

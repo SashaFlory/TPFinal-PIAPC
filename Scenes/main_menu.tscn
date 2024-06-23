@@ -1,0 +1,79 @@
+[gd_scene load_steps=3 format=3 uid="uid://3rn66knfp0vo"]
+
+[ext_resource type="Script" path="res://Scenes/main_menu.gd" id="1_cql8y"]
+[ext_resource type="Texture2D" uid="uid://5yatrb8l1vta" path="res://Assets/Fondo.jpg" id="2_8m8kg"]
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cql8y")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(928, 545)
+scale = Vector2(4.384, 4.27265)
+texture = ExtResource("2_8m8kg")
+
+[node name="Jugar" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1336.0
+offset_top = 617.0
+offset_right = 1491.0
+offset_bottom = 707.0
+theme_override_font_sizes/font_size = 59
+text = "Jugar"
+
+[node name="Salir" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1349.0
+offset_top = 770.0
+offset_right = 1480.0
+offset_bottom = 860.0
+theme_override_font_sizes/font_size = 59
+text = "Salir"
+
+[node name="Objetivo" type="Button" parent="."]
+layout_mode = 0
+offset_left = 432.0
+offset_top = 653.0
+offset_right = 834.0
+offset_bottom = 771.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+button_mask = 0
+text = "Objetivo:
+Derrotar 3 enemigos"
+flat = true
+alignment = 0
+
+[node name="Estudiantes" type="Button" parent="."]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 928.0
+offset_right = 845.0
+offset_bottom = 1046.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+button_mask = 0
+text = "Estudiantes: Agustín Iñiguez, Sasha Flory"
+flat = true
+alignment = 0
+
+[node name="Titulo" type="Button" parent="."]
+layout_mode = 0
+offset_left = 407.0
+offset_top = 192.0
+offset_right = 1455.0
+offset_bottom = 337.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 100
+button_mask = 0
+text = "Trabajo Práctico Final"
+flat = true
+alignment = 0
+
+[connection signal="pressed" from="Jugar" to="." method="_on_jugar_pressed"]
+[connection signal="pressed" from="Salir" to="." method="_on_salir_pressed"]

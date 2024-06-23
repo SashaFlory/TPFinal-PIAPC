@@ -19,3 +19,7 @@ func _physics_process(_delta):
 			animations.play("walk_left")
 		elif velocity.y < 0 and velocity.y > velocity.x:
 			animations.play("walk_up")
+
+func TakeDamage():
+	queue_free()
+

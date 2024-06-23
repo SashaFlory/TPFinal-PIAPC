@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cj6gi1wpyiqqc"]
+[gd_scene load_steps=13 format=3 uid="uid://cj6gi1wpyiqqc"]
 
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_rw8un"]
 [ext_resource type="Texture2D" uid="uid://bpot1pfr70ahq" path="res://Assets/C4.png" id="1_yf4o5"]
@@ -111,9 +111,47 @@ tracks/0/keys = {
 "values": [18, 19, 21, 22]
 }
 
+[sub_resource type="Animation" id="Animation_dwien"]
+resource_name = "attack_right"
+length = 0.5
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [26]
+}
+
+[sub_resource type="Animation" id="Animation_hkxxf"]
+resource_name = "attack_left"
+length = 0.5
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [29]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ublhn"]
 _data = {
 "RESET": SubResource("Animation_8muh3"),
+"attack_left": SubResource("Animation_hkxxf"),
+"attack_right": SubResource("Animation_dwien"),
 "idle": SubResource("Animation_esgdh"),
 "walk_down": SubResource("Animation_iymau"),
 "walk_left": SubResource("Animation_f7j8y"),
